@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,16 @@
 		1625509024398D4F008FB122 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1625508F24398D4F008FB122 /* Assets.xcassets */; };
 		1625509324398D4F008FB122 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1625509124398D4F008FB122 /* LaunchScreen.storyboard */; };
 		1625509E24398D4F008FB122 /* Tile_ViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1625509D24398D4F008FB122 /* Tile_ViewTests.swift */; };
+		162550A924398F3B008FB122 /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162550A824398F3B008FB122 /* TileView.swift */; };
+		162550AB243992E4008FB122 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162550AA243992E4008FB122 /* Pixel.swift */; };
+		167772A1243AA6AF003F22F9 /* AppKitBridge.bundle in Embed PlugIns */ = {isa = PBXBuildFile; fileRef = 1677729A243AA69F003F22F9 /* AppKitBridge.bundle */; platformFilter = maccatalyst; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		167772A9243AA913003F22F9 /* AppKitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167772A8243AA913003F22F9 /* AppKitApp.swift */; };
+		167772AB243AA9DF003F22F9 /* Catalyst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167772AA243AA9DF003F22F9 /* Catalyst.swift */; };
+		167772AD243AAA3A003F22F9 /* AppKit.h in Sources */ = {isa = PBXBuildFile; fileRef = 167772AC243AAA3A003F22F9 /* AppKit.h */; };
+		167772B1243AE1E6003F22F9 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167772B0243AE1E6003F22F9 /* ColorPickerView.swift */; };
+		169562DB243D17380050BC36 /* ThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169562DA243D17380050BC36 /* ThumbnailView.swift */; };
+		16B3F65A243BF72500EC9CF2 /* TileEditorCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3F659243BF72500EC9CF2 /* TileEditorCanvasView.swift */; };
+		16B3F65C243C395000EC9CF2 /* PixelLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3F65B243C395000EC9CF2 /* PixelLocation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,7 +34,28 @@
 			remoteGlobalIDString = 1625508224398D4D008FB122;
 			remoteInfo = "Tile View";
 		};
+		167772A2243AA6AF003F22F9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 1625507B24398D4D008FB122 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 16777299243AA69F003F22F9;
+			remoteInfo = AppKitBridge;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		167772A4243AA6AF003F22F9 /* Embed PlugIns */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				167772A1243AA6AF003F22F9 /* AppKitBridge.bundle in Embed PlugIns */,
+			);
+			name = "Embed PlugIns";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1625508324398D4D008FB122 /* Tile View.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Tile View.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,6 +69,20 @@
 		1625509924398D4F008FB122 /* Tile ViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tile ViewTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1625509D24398D4F008FB122 /* Tile_ViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile_ViewTests.swift; sourceTree = "<group>"; };
 		1625509F24398D4F008FB122 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		162550A824398F3B008FB122 /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
+		162550AA243992E4008FB122 /* Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
+		16777295243A94A8003F22F9 /* Tile View.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tile View.entitlements"; sourceTree = "<group>"; };
+		1677729A243AA69F003F22F9 /* AppKitBridge.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppKitBridge.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
+		1677729C243AA69F003F22F9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		167772A7243AA913003F22F9 /* AppKitBridge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AppKitBridge-Bridging-Header.h"; sourceTree = "<group>"; };
+		167772A8243AA913003F22F9 /* AppKitApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppKitApp.swift; sourceTree = "<group>"; };
+		167772AA243AA9DF003F22F9 /* Catalyst.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Catalyst.swift; sourceTree = "<group>"; };
+		167772AC243AAA3A003F22F9 /* AppKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppKit.h; sourceTree = "<group>"; };
+		167772AE243AAA87003F22F9 /* Tile View-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tile View-Bridging-Header.h"; sourceTree = "<group>"; };
+		167772B0243AE1E6003F22F9 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		169562DA243D17380050BC36 /* ThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailView.swift; sourceTree = "<group>"; };
+		16B3F659243BF72500EC9CF2 /* TileEditorCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileEditorCanvasView.swift; sourceTree = "<group>"; };
+		16B3F65B243C395000EC9CF2 /* PixelLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelLocation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +100,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		16777297243AA69F003F22F9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -63,7 +115,9 @@
 			children = (
 				1625508524398D4D008FB122 /* Tile View */,
 				1625509C24398D4F008FB122 /* Tile ViewTests */,
+				1677729B243AA69F003F22F9 /* AppKitBridge */,
 				1625508424398D4D008FB122 /* Products */,
+				167772A0243AA6AF003F22F9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,6 +126,7 @@
 			children = (
 				1625508324398D4D008FB122 /* Tile View.app */,
 				1625509924398D4F008FB122 /* Tile ViewTests.xctest */,
+				1677729A243AA69F003F22F9 /* AppKitBridge.bundle */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -79,6 +134,7 @@
 		1625508524398D4D008FB122 /* Tile View */ = {
 			isa = PBXGroup;
 			children = (
+				16777295243A94A8003F22F9 /* Tile View.entitlements */,
 				1625508624398D4D008FB122 /* AppDelegate.swift */,
 				1625508824398D4D008FB122 /* SceneDelegate.swift */,
 				1625508A24398D4D008FB122 /* ViewController.swift */,
@@ -86,6 +142,15 @@
 				1625508F24398D4F008FB122 /* Assets.xcassets */,
 				1625509124398D4F008FB122 /* LaunchScreen.storyboard */,
 				1625509424398D4F008FB122 /* Info.plist */,
+				162550A824398F3B008FB122 /* TileView.swift */,
+				162550AA243992E4008FB122 /* Pixel.swift */,
+				167772AA243AA9DF003F22F9 /* Catalyst.swift */,
+				167772AC243AAA3A003F22F9 /* AppKit.h */,
+				167772AE243AAA87003F22F9 /* Tile View-Bridging-Header.h */,
+				167772B0243AE1E6003F22F9 /* ColorPickerView.swift */,
+				16B3F659243BF72500EC9CF2 /* TileEditorCanvasView.swift */,
+				16B3F65B243C395000EC9CF2 /* PixelLocation.swift */,
+				169562DA243D17380050BC36 /* ThumbnailView.swift */,
 			);
 			path = "Tile View";
 			sourceTree = "<group>";
@@ -99,6 +164,23 @@
 			path = "Tile ViewTests";
 			sourceTree = "<group>";
 		};
+		1677729B243AA69F003F22F9 /* AppKitBridge */ = {
+			isa = PBXGroup;
+			children = (
+				1677729C243AA69F003F22F9 /* Info.plist */,
+				167772A8243AA913003F22F9 /* AppKitApp.swift */,
+				167772A7243AA913003F22F9 /* AppKitBridge-Bridging-Header.h */,
+			);
+			path = AppKitBridge;
+			sourceTree = "<group>";
+		};
+		167772A0243AA6AF003F22F9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -109,10 +191,12 @@
 				1625507F24398D4D008FB122 /* Sources */,
 				1625508024398D4D008FB122 /* Frameworks */,
 				1625508124398D4D008FB122 /* Resources */,
+				167772A4243AA6AF003F22F9 /* Embed PlugIns */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				167772A3243AA6AF003F22F9 /* PBXTargetDependency */,
 			);
 			name = "Tile View";
 			productName = "Tile View";
@@ -137,6 +221,23 @@
 			productReference = 1625509924398D4F008FB122 /* Tile ViewTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		16777299243AA69F003F22F9 /* AppKitBridge */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1677729D243AA69F003F22F9 /* Build configuration list for PBXNativeTarget "AppKitBridge" */;
+			buildPhases = (
+				16777296243AA69F003F22F9 /* Sources */,
+				16777297243AA69F003F22F9 /* Frameworks */,
+				16777298243AA69F003F22F9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AppKitBridge;
+			productName = AppKitBridge;
+			productReference = 1677729A243AA69F003F22F9 /* AppKitBridge.bundle */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -149,10 +250,15 @@
 				TargetAttributes = {
 					1625508224398D4D008FB122 = {
 						CreatedOnToolsVersion = 11.4;
+						LastSwiftMigration = 1140;
 					};
 					1625509824398D4F008FB122 = {
 						CreatedOnToolsVersion = 11.4;
 						TestTargetID = 1625508224398D4D008FB122;
+					};
+					16777299243AA69F003F22F9 = {
+						CreatedOnToolsVersion = 11.4;
+						LastSwiftMigration = 1140;
 					};
 				};
 			};
@@ -171,6 +277,7 @@
 			targets = (
 				1625508224398D4D008FB122 /* Tile View */,
 				1625509824398D4F008FB122 /* Tile ViewTests */,
+				16777299243AA69F003F22F9 /* AppKitBridge */,
 			);
 		};
 /* End PBXProject section */
@@ -193,6 +300,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		16777298243AA69F003F22F9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -200,9 +314,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				167772B1243AE1E6003F22F9 /* ColorPickerView.swift in Sources */,
 				1625508B24398D4D008FB122 /* ViewController.swift in Sources */,
 				1625508724398D4D008FB122 /* AppDelegate.swift in Sources */,
+				167772AB243AA9DF003F22F9 /* Catalyst.swift in Sources */,
+				162550AB243992E4008FB122 /* Pixel.swift in Sources */,
+				162550A924398F3B008FB122 /* TileView.swift in Sources */,
+				16B3F65A243BF72500EC9CF2 /* TileEditorCanvasView.swift in Sources */,
+				167772AD243AAA3A003F22F9 /* AppKit.h in Sources */,
 				1625508924398D4D008FB122 /* SceneDelegate.swift in Sources */,
+				169562DB243D17380050BC36 /* ThumbnailView.swift in Sources */,
+				16B3F65C243C395000EC9CF2 /* PixelLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -214,6 +336,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		16777296243AA69F003F22F9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				167772A9243AA913003F22F9 /* AppKitApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -221,6 +351,12 @@
 			isa = PBXTargetDependency;
 			target = 1625508224398D4D008FB122 /* Tile View */;
 			targetProxy = 1625509A24398D4F008FB122 /* PBXContainerItemProxy */;
+		};
+		167772A3243AA6AF003F22F9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			platformFilter = maccatalyst;
+			target = 16777299243AA69F003F22F9 /* AppKitBridge */;
+			targetProxy = 167772A2243AA6AF003F22F9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -294,7 +430,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -348,7 +484,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -361,7 +497,10 @@
 		162550A324398D4F008FB122 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Tile View/Tile View.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9622H67BVM;
 				INFOPLIST_FILE = "Tile View/Info.plist";
@@ -371,15 +510,21 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jacobhazelgrove.Tile-View";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Tile View/Tile View-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
 		162550A424398D4F008FB122 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "Tile View/Tile View.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9622H67BVM;
 				INFOPLIST_FILE = "Tile View/Info.plist";
@@ -389,8 +534,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.jacobhazelgrove.Tile-View";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Tile View/Tile View-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -438,6 +585,57 @@
 			};
 			name = Release;
 		};
+		1677729E243AA69F003F22F9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9622H67BVM;
+				INFOPLIST_FILE = AppKitBridge/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jacobhazelgrove.AppKitBridge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AppKitBridge/AppKitBridge-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Debug;
+		};
+		1677729F243AA69F003F22F9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 9622H67BVM;
+				INFOPLIST_FILE = AppKitBridge/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Bundles";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jacobhazelgrove.AppKitBridge;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "AppKitBridge/AppKitBridge-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				WRAPPER_EXTENSION = bundle;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -464,6 +662,15 @@
 			buildConfigurations = (
 				162550A624398D4F008FB122 /* Debug */,
 				162550A724398D4F008FB122 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1677729D243AA69F003F22F9 /* Build configuration list for PBXNativeTarget "AppKitBridge" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1677729E243AA69F003F22F9 /* Debug */,
+				1677729F243AA69F003F22F9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

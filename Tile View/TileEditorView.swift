@@ -30,6 +30,7 @@ class TileEditorView: UIView {
         didSet {
             print("tile: \(tile?.layers)")
             setNeedsDisplay()
+            updateThumbnails()
         }
     }
     

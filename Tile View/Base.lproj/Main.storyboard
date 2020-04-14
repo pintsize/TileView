@@ -27,32 +27,19 @@
                                 </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zpD-s7-Xam">
-                                <rect key="frame" x="395.5" y="60" width="233" height="44"/>
+                                <rect key="frame" x="490" y="60" width="44" height="44"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="44" translatesAutoresizingMaskIntoConstraints="NO" id="qQL-ac-6MU">
                                         <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                     </stackView>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nKv-u5-fPJ">
-                                        <rect key="frame" x="52" y="6.5" width="161" height="32"/>
-                                        <segments>
-                                            <segment title="" image="paintbrush" catalog="system"/>
-                                            <segment title="Flood"/>
-                                            <segment title="Erase"/>
-                                        </segments>
-                                        <connections>
-                                            <action selector="setToolMode:" destination="BYZ-38-t0r" eventType="valueChanged" id="hBO-av-R5u"/>
-                                        </connections>
-                                    </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="qQL-ac-6MU" firstAttribute="leading" secondItem="zpD-s7-Xam" secondAttribute="leading" id="2jq-f4-33O"/>
                                     <constraint firstAttribute="bottom" secondItem="qQL-ac-6MU" secondAttribute="bottom" id="7VX-BV-81g"/>
-                                    <constraint firstItem="nKv-u5-fPJ" firstAttribute="centerY" secondItem="zpD-s7-Xam" secondAttribute="centerY" id="GFF-Se-RDi"/>
+                                    <constraint firstAttribute="trailing" secondItem="qQL-ac-6MU" secondAttribute="trailing" id="Cct-7U-Fut"/>
                                     <constraint firstAttribute="height" constant="44" id="MWs-Yp-G70"/>
-                                    <constraint firstItem="nKv-u5-fPJ" firstAttribute="leading" secondItem="qQL-ac-6MU" secondAttribute="trailing" constant="8" symbolic="YES" id="eDB-eU-Bo7"/>
                                     <constraint firstItem="qQL-ac-6MU" firstAttribute="top" secondItem="zpD-s7-Xam" secondAttribute="top" id="v5P-tg-hUZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="nKv-u5-fPJ" secondAttribute="trailing" constant="20" symbolic="YES" id="y4r-AP-5WK"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="Okq-3H-oim" customClass="RulerView" customModule="Tile_View" customModuleProvider="target">
@@ -109,11 +96,11 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nSy-aJ-4a1">
-                                <rect key="frame" x="796" y="60" width="208" height="96"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="nSy-aJ-4a1">
+                                <rect key="frame" x="908" y="60" width="96" height="208"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdL-Ry-miq" customClass="ThumbnailView" customModule="Tile_View" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="32" height="32"/>
+                                        <rect key="frame" x="64" y="0.0" width="32" height="32"/>
                                         <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="32" id="PxD-eY-y9u"/>
@@ -121,7 +108,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cVa-A8-Vnd" customClass="ThumbnailView" customModule="Tile_View" customModuleProvider="target">
-                                        <rect key="frame" x="40" y="0.0" width="64" height="64"/>
+                                        <rect key="frame" x="32" y="40" width="64" height="64"/>
                                         <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="64" id="35U-t1-wc6"/>
@@ -129,7 +116,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fft-KD-ZS1" customClass="ThumbnailView" customModule="Tile_View" customModuleProvider="target">
-                                        <rect key="frame" x="112" y="0.0" width="96" height="96"/>
+                                        <rect key="frame" x="0.0" y="112" width="96" height="96"/>
                                         <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="96" id="6W5-Fj-x2w"/>
@@ -376,7 +363,7 @@
                                     </segue>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tic-Yw-4De">
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tic-Yw-4De">
                                 <rect key="frame" x="800" y="247" width="64" height="44"/>
                                 <state key="normal" image="Layers"/>
                                 <connections>
@@ -385,11 +372,34 @@
                                     </segue>
                                 </connections>
                             </button>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="nKv-u5-fPJ">
+                                <rect key="frame" x="431.5" y="234" width="161" height="32"/>
+                                <segments>
+                                    <segment title="" image="paintbrush" catalog="system"/>
+                                    <segment title="Flood"/>
+                                    <segment title="Erase"/>
+                                </segments>
+                                <connections>
+                                    <action selector="setToolMode:" destination="BYZ-38-t0r" eventType="valueChanged" id="hBO-av-R5u"/>
+                                </connections>
+                            </segmentedControl>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="P7r-va-iIA">
+                                <rect key="frame" x="403" y="1075" width="218" height="32"/>
+                                <segments>
+                                    <segment title="Base"/>
+                                    <segment title="Bitmap 1"/>
+                                    <segment title="Vector 1"/>
+                                </segments>
+                                <connections>
+                                    <action selector="setToolMode:" destination="BYZ-38-t0r" eventType="valueChanged" id="Qxk-jc-0Tu"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Y8a-6r-pWx" firstAttribute="leading" secondItem="qVT-PY-2Dq" secondAttribute="leading" id="154-3n-M2s"/>
+                            <constraint firstItem="pf9-4p-EeS" firstAttribute="top" secondItem="nKv-u5-fPJ" secondAttribute="bottom" constant="8" id="5O7-DA-PPc"/>
                             <constraint firstItem="qVT-PY-2Dq" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" priority="999" constant="160" id="5iT-Qx-2bv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="nSy-aJ-4a1" secondAttribute="trailing" constant="20" id="7xM-dJ-3dX"/>
                             <constraint firstItem="zpD-s7-Xam" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="9UC-F5-EWK"/>
@@ -405,10 +415,12 @@
                             <constraint firstItem="qVT-PY-2Dq" firstAttribute="leading" secondItem="Okq-3H-oim" secondAttribute="trailing" id="OHV-fn-k14"/>
                             <constraint firstItem="1ic-z2-CQk" firstAttribute="trailing" secondItem="qVT-PY-2Dq" secondAttribute="trailing" id="OOw-v3-U0F"/>
                             <constraint firstItem="1ic-z2-CQk" firstAttribute="top" secondItem="Y8a-6r-pWx" secondAttribute="bottom" constant="8" symbolic="YES" id="PPF-Mg-F9L"/>
+                            <constraint firstItem="nKv-u5-fPJ" firstAttribute="centerX" secondItem="pf9-4p-EeS" secondAttribute="centerX" id="Qm8-eg-IJU"/>
                             <constraint firstItem="Tic-Yw-4De" firstAttribute="trailing" secondItem="qVT-PY-2Dq" secondAttribute="trailing" id="RDb-gr-1rx"/>
                             <constraint firstItem="zpD-s7-Xam" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="U5u-Pr-J71"/>
                             <constraint firstItem="qVT-PY-2Dq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Wj8-Zz-RXN"/>
                             <constraint firstItem="pf9-4p-EeS" firstAttribute="centerX" secondItem="qVT-PY-2Dq" secondAttribute="centerX" id="X4f-K5-Kko"/>
+                            <constraint firstItem="P7r-va-iIA" firstAttribute="centerX" secondItem="qVT-PY-2Dq" secondAttribute="centerX" id="ZBY-Py-aDR"/>
                             <constraint firstItem="r1h-hA-foN" firstAttribute="bottom" secondItem="qVT-PY-2Dq" secondAttribute="bottom" id="ZF1-4C-tKR"/>
                             <constraint firstItem="fEx-qa-8Pp" firstAttribute="top" secondItem="pf9-4p-EeS" secondAttribute="bottom" constant="8" symbolic="YES" id="Zil-xf-Lyq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="jTr-7I-cc1" secondAttribute="bottom" constant="20" id="aTz-uU-uvD"/>
@@ -420,6 +432,7 @@
                             <constraint firstItem="qVT-PY-2Dq" firstAttribute="leading" secondItem="Okq-3H-oim" secondAttribute="trailing" id="iWa-hv-xJy"/>
                             <constraint firstItem="qVT-PY-2Dq" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="lFN-hd-P7X"/>
                             <constraint firstItem="qVT-PY-2Dq" firstAttribute="top" secondItem="Tic-Yw-4De" secondAttribute="bottom" constant="40" id="sMV-Of-36U"/>
+                            <constraint firstItem="P7r-va-iIA" firstAttribute="top" secondItem="Y8a-6r-pWx" secondAttribute="bottom" constant="8" id="yeR-RK-vFw"/>
                             <constraint firstItem="Y8a-6r-pWx" firstAttribute="trailing" secondItem="qVT-PY-2Dq" secondAttribute="trailing" id="zyB-2C-kYP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

@@ -156,6 +156,8 @@ class ViewController: UIViewController {
             */
         } catch let error {
             print("error: \(error)")
+            tileSet = TileSet8Sided()
+            presentTile(with: .center, in: tileEditorView, updateName: true)
         }
 
     }

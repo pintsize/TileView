@@ -24,7 +24,7 @@ class Tile: Codable {
         
         pixels = columns
         
-        layers = [BitmapLayer()]
+        layers = [BitmapLayer(name: "Base"), BitmapLayer(name: "Bitmap 1"), VectorLayer(name: "Vector 1")]
     }
     
     var pixels: [[Pixel]] = []

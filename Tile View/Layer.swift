@@ -10,6 +10,10 @@ import Foundation
 
 class Layer: Codable {
     
+    init(name: String) {
+        self.name = name
+    }
+    
     var name: String = ""
     
     var alternatives: [Layer] = []

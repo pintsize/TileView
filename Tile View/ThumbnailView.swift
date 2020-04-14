@@ -23,11 +23,11 @@ class ThumbnailView: UIView {
         for (columnIndex, column) in pixels.enumerated() {
             for (rowIndex, pixel) in column.enumerated() {
                 //                print(pixel)
-                //if let pixelColor = pixel.color {
+                if let pixelColor = pixel.color {
                     let rect = CGRect(x: CGFloat(columnIndex) * size.width, y: CGFloat(rowIndex) * size.height, width: size.width, height: size.height)
-                    pixel.color.setFill()
+                    pixelColor.setFill()
                     UIBezierPath(rect: rect).fill()
-               // }
+                }
             }
         }
     }

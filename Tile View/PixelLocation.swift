@@ -14,3 +14,22 @@ struct PixelLocation: Codable {
     let row: Int
     
 }
+
+extension PixelLocation {
+    
+    var above: PixelLocation {
+        return PixelLocation(column: column, row: row - 1)
+    }
+    
+    var below: PixelLocation {
+        return PixelLocation(column: column, row: row + 1)
+    }
+    
+    var left: PixelLocation {
+        return PixelLocation(column: column + 1, row: row)
+    }
+    
+    var right: PixelLocation {
+        return PixelLocation(column: column - 1, row: row)
+    }
+}

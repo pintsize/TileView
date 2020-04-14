@@ -8,13 +8,79 @@
 
 import UIKit
 
+let fileName: String = "TileSet.json"
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var tileEditorView: TileEditorView!
+
+    /*
+    @IBOutlet weak var topLeftTileEditorView: TileEditorView!
+    @IBOutlet weak var topTileEditorView: TileEditorView!
+    @IBOutlet weak var topRightTileEditorView: TileEditorView!
+    
+    @IBOutlet weak var leftTileEditorView: TileEditorView!
+    @IBOutlet weak var tileEditorView: TileEditorView!
+    @IBOutlet weak var rightTileEditorView: TileEditorView!
+    
+    @IBOutlet weak var bottomLeftTileEditorView: TileEditorView!
+    @IBOutlet weak var bottomTileEditorView: TileEditorView!
+    @IBOutlet weak var bottomRightTileEditorView: TileEditorView!
+    
+ */
+    @IBOutlet weak var upperLeftEdgeButton: TileChooserButton!
+    @IBOutlet weak var upEdgeButton: TileChooserButton!
+    @IBOutlet weak var upperRightEdgeButton: TileChooserButton!
+    
+    @IBOutlet weak var leftEdgeButton: TileChooserButton!
+    @IBOutlet weak var centerButton: TileChooserButton!
+    @IBOutlet weak var rightEdgeButton: TileChooserButton!
+    
+    @IBOutlet weak var lowerLeftEdgeButton: TileChooserButton!
+    @IBOutlet weak var downEdgeButton: TileChooserButton!
+    @IBOutlet weak var lowerRightEdgeButton: TileChooserButton!
+    
+    @IBOutlet weak var upperLeftCornerButton: TileChooserButton!
+    @IBOutlet weak var upperRightCornerButton: TileChooserButton!
+    @IBOutlet weak var lowerLeftCornerButton: TileChooserButton!
+    @IBOutlet weak var lowerRightCornerButton: TileChooserButton!
+    
+    @IBOutlet weak var tileNameLabel: UILabel!
+    
+    var tileSet: TileSet8Sided = TileSet8Sided()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         loadPixels()
+        
+        setupSwatches()
+        
+        upperLeftEdgeButton.tileIdentifier = .upperLeftEdge
+        upEdgeButton.tileIdentifier = .upEdge
+        upperRightEdgeButton.tileIdentifier = .upperRightEdge
+        
+        leftEdgeButton.tileIdentifier = .leftEdge
+        centerButton.tileIdentifier = .center
+        rightEdgeButton.tileIdentifier = .rightEdge
+        
+        lowerLeftEdgeButton.tileIdentifier = .lowerLeftEdge
+        downEdgeButton.tileIdentifier = .downEdge
+        lowerRightEdgeButton.tileIdentifier = .lowerRightEdge
+        
+        upperLeftCornerButton.tileIdentifier = .upperLeftCorner
+        upperRightCornerButton.tileIdentifier = .upperRightCorner
+        lowerLeftCornerButton.tileIdentifier = .lowerLeftCorner
+        lowerRightCornerButton.tileIdentifier = .lowerRightCorner
+        
+        tileNameLabel.text = ""
+        #if targetEnvironment(macCatalyst)
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
+        #endif
+    }
+
+    fileprivate func setupSwatches() {
         addSwatch(with: .black)
         addSwatch(with: .blue)
         addSwatch(with: .brown)
@@ -30,12 +96,6 @@ class ViewController: UIViewController {
         addSwatch(with: .red)
         addSwatch(with: .white)
         addSwatch(with: .yellow)
-        
-        #if targetEnvironment(macCatalyst)
-        
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        
-        #endif
     }
     
     var documentsDirectory: String? {
@@ -49,7 +109,7 @@ class ViewController: UIViewController {
         let urls = fileManager.urls(for: .documentDirectory, in: .userDomainMask)
         
         if let documentDirectory = urls.first {
-            return documentDirectory.appendingPathComponent("image.json")
+            return documentDirectory.appendingPathComponent(fileName)
         } else {
             print("Couldn't get documents directory!")
         }
@@ -60,7 +120,9 @@ class ViewController: UIViewController {
     func savePixels() {
         guard let fileURL = saveFileURL else { return }
         do {
-            let jsonData = try JSONEncoder().encode(tileEditorView.pixels)
+            let jsonEncoder = JSONEncoder()
+            jsonEncoder.outputFormatting = [.prettyPrinted]
+            let jsonData = try jsonEncoder.encode(tileSet)
             try jsonData.write(to: fileURL)
 
         } catch let error {
@@ -75,10 +137,24 @@ class ViewController: UIViewController {
         do {
             let jsonData = try Data(contentsOf: fileURL)
             
-            let pixels = try JSONDecoder().decode([[Pixel]].self, from: jsonData)
-
-            tileEditorView.pixels = pixels
+            let decodedTileSet = try JSONDecoder().decode(TileSet8Sided.self, from: jsonData)
             
+            tileSet = decodedTileSet
+            
+            presentTile(with: .center, in: tileEditorView, updateName: true)
+            /*
+            presentTile(with: .upperLeftEdge, in: topLeftTileEditorView)
+            presentTile(with: .upEdge, in: topTileEditorView)
+            presentTile(with: .upperRightEdge, in: topRightTileEditorView)
+            
+            presentTile(with: .leftEdge, in: leftTileEditorView)
+            presentTile(with: .center, in: tileEditorView, updateName: true)
+            presentTile(with: .rightEdge, in: rightTileEditorView)
+            
+            presentTile(with: .lowerLeftEdge, in: bottomLeftTileEditorView)
+            presentTile(with: .downEdge, in: bottomTileEditorView)
+            presentTile(with: .lowerRightEdge, in: bottomRightTileEditorView)
+            */
         } catch let error {
             print("error: \(error)")
         }
@@ -86,11 +162,18 @@ class ViewController: UIViewController {
     }
     @IBOutlet weak var stackView: UIStackView!
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    
+    func presentTile(with identifier: TileIdentifier, in tileView: TileEditorView, updateName: Bool = false) {
+        guard let tile = tileSet.tile(with: identifier) else { return }
+        tileNameLabel.text = identifier.localizedName
         
+        tileView.tile = tile
     }
     
+    @IBAction func setTile(_ tileChooserButton: TileChooserButton) {
+        guard let identifier = tileChooserButton.tileIdentifier else { return }
+        presentTile(with: identifier, in: tileEditorView, updateName: true)
+    }
     
     @IBAction func undo(_ sender: UIBarButtonItem) {
         guard let undoManager = undoManager else { return }
@@ -103,7 +186,7 @@ class ViewController: UIViewController {
     }
     
     @objc func setPaintColor(_ sender: UIButton) {
-        tileEditorView.paintColor = sender.backgroundColor
+        tileEditorView.paintColor = sender.backgroundColor?.color
     }
     
     
@@ -115,7 +198,7 @@ class ViewController: UIViewController {
             tileEditorView.toolMode = .floodFill
         }
         else if segmentedControl.selectedSegmentIndex == 2 {
-            tileEditorView.toolMode = .erase
+            tileEditorView.toolMode = .eraser
         }
         
         savePixels() 

@@ -1,5 +1,5 @@
 //
-//  TileView.swift
+//  TileEditorView.swift
 //  Tile View
 //
 //  Created by Jacob Hazelgrove on 4/4/20.
@@ -13,7 +13,9 @@ let verticalResolution: Int = 32
 
 class TileEditorView: UIView {
     enum ToolMode {
-        case erase
+        case eraser
+        case line
+        case circle
         case floodFill
         case paint
     }
@@ -24,9 +26,17 @@ class TileEditorView: UIView {
     
     var toolMode: ToolMode = .paint
     
-    var pixels: [[Pixel]] = []
+    var tile: Tile? {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
-    var paintColor: UIColor? = nil
+    var pixels: [[Pixel]] {
+        return tile?.pixels ?? []
+    }
+    
+    var paintColor: Color? = UIColor.black.color
     
     // TODO: Name?
     var isHovering: Bool = false
@@ -66,7 +76,6 @@ class TileEditorView: UIView {
 //        addGestureRecognizer(longPress)
         
         isUserInteractionEnabled = true
-        setupDevPixels()
     }
     
     func updateThumbnails() {
@@ -75,24 +84,10 @@ class TileEditorView: UIView {
         thumbnailView3X.pixels = pixels
     }
     
-    func setupDevPixels() {
-        var columns: [[Pixel]] = []
-        
-        for n in 0..<horizontalResolution {
-            var column: [Pixel] = []
-            for n in 0..<verticalResolution {
-                column.append(Pixel())
-            }
-            
-            columns.append(column)
-        }
-        pixels = columns
-    }
-    
     func handlePaint(_ gestureRecognizer: UIGestureRecognizer) {
         guard let color = paintColor else { return }
         let location: CGPoint = gestureRecognizer.location(in: self)
-        
+        print("handlePaint color: \(color)")
         guard bounds.contains(location) else { return }
         
         let column = Int(floor(location.x / cellSize.width))
@@ -103,22 +98,31 @@ class TileEditorView: UIView {
         let pixelLocation = PixelLocation(column: column, row: row)
         lastPaintedPixelLocation = pixelLocation
         hoverPixelLocation = pixelLocation
-        print("undoManager: \(undoManager)")
+        
         switch toolMode {
-        case .erase:
+        case .eraser:
             erase(location: pixelLocation)
         case .floodFill:
-            floodFill(x: column, y: row, color: color)
+            let matchingColor = pixelColor(at: pixelLocation)
+            floodFill(pixelLocation, with: color, matching: matchingColor)
         case .paint:
             set(color: color, for: pixelLocation)
+        case .line:
+            return
+        case .circle:
+            return
         }
         
     }
     
-    func erase(location: PixelLocation) {
-        set(color: .white, for: location)
+    func pixelColor(at location: PixelLocation) -> Color? {
         let pixel = pixels[location.column][location.row]
-        pixel.isEmpty = true
+        return pixel.color
+    }
+    
+    func erase(location: PixelLocation) {
+        set(color: nil, for: location)
+        let pixel = pixels[location.column][location.row]
         
     }
     
@@ -147,12 +151,12 @@ class TileEditorView: UIView {
     @objc func hover(_ gestureRecognizer: UIHoverGestureRecognizer) {
         switch gestureRecognizer.state {
         case .began:
-            Catalyst.appKit?.hideCursor()
+            //Catalyst.appKit?.hideCursor()
             handleHover(gestureRecognizer)
         case .changed:
             handleHover(gestureRecognizer)
         case .ended:
-            Catalyst.appKit?.showCursor()
+            //Catalyst.appKit?.showCursor()
             hoverPixelLocation = nil
             setNeedsDisplay()
         default:
@@ -170,13 +174,13 @@ class TileEditorView: UIView {
             for (rowIndex, pixel) in column.enumerated() {
 //                print(pixel)
                 
-                //if let pixelColor = pixel.color {
+                if let pixelColor = pixel.color {
                     let rect = rectFor(column: columnIndex, row: rowIndex)
-                    pixel.color.setFill()
+                    pixelColor.setFill()
                     UIBezierPath(rect: rect).fill()
-                //} else {
-                //    drawTransparentPattern(at: PixelLocation(column: columnIndex, row: rowIndex))
-                //}
+                } else {
+                    drawTransparentPattern(at: PixelLocation(column: columnIndex, row: rowIndex))
+                }
             }
         }
         
@@ -215,16 +219,18 @@ class TileEditorView: UIView {
     
     // TODO: Name?
     func drawHover() {
-        print("drawHover at: \(hoverPixelLocation)")
         guard let location = hoverPixelLocation else { return }
         
         let columnRect = rectFor(column: location.column)
         let rowRect = rectFor(row: location.row)
         
-        UIColor.black.withAlphaComponent(0.05).setFill()
-        UIBezierPath(rect: columnRect).fill()
-        UIBezierPath(rect: rowRect).fill()
+//        UIColor.black.withAlphaComponent(0.10).setFill()
+//        UIBezierPath(rect: columnRect).fill()
+//        UIBezierPath(rect: rowRect).fill()
         
+        UIColor.black.setStroke()
+        UIBezierPath(rect: columnRect).stroke()
+        UIBezierPath(rect: rowRect).stroke()
     }
 
     
@@ -258,7 +264,9 @@ class TileEditorView: UIView {
                       height: size.height)
     }
     
-    func floodFill(x: Int, y: Int, color: UIColor) {
+    func floodFill(_ location: PixelLocation, with color: Color, matching: Color?) {
+        let x = location.column
+        let y = location.row
         if x < 0 || x >= horizontalResolution ||
             y < 0 || y >= verticalResolution {
             return
@@ -267,18 +275,19 @@ class TileEditorView: UIView {
         print("flooding: (\(x), \(y))")
         let pixel = pixels[x][y]
         
-        if !pixel.isEmpty { return }
+        if pixel.color != matching || pixel.color == color { return }
+        
         
         set(color: color, for: PixelLocation(column: x, row: y))
         
         
-        floodFill(x: x + 1, y: y, color: color)
-        floodFill(x: x - 1, y: y, color: color)
-        floodFill(x: x, y: y + 1, color: color)
-        floodFill(x: x, y: y - 1, color: color)
+        floodFill(location.above, with: color, matching: matching)
+        floodFill(location.below, with: color, matching: matching)
+        floodFill(location.left, with: color, matching: matching)
+        floodFill(location.right, with: color, matching: matching)
     }
     
-    func set(color: UIColor, for pixelLocation: PixelLocation) {
+    func set(color: Color?, for pixelLocation: PixelLocation) {
         let pixel = pixels[pixelLocation.column][pixelLocation.row]
         if let undoManager = undoManager {
             let oldColor = pixel.color

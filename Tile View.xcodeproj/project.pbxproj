@@ -14,16 +14,29 @@
 		1625509024398D4F008FB122 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1625508F24398D4F008FB122 /* Assets.xcassets */; };
 		1625509324398D4F008FB122 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1625509124398D4F008FB122 /* LaunchScreen.storyboard */; };
 		1625509E24398D4F008FB122 /* Tile_ViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1625509D24398D4F008FB122 /* Tile_ViewTests.swift */; };
-		162550A924398F3B008FB122 /* TileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162550A824398F3B008FB122 /* TileView.swift */; };
+		162550A924398F3B008FB122 /* TileEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162550A824398F3B008FB122 /* TileEditorView.swift */; };
 		162550AB243992E4008FB122 /* Pixel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 162550AA243992E4008FB122 /* Pixel.swift */; };
 		167772A1243AA6AF003F22F9 /* AppKitBridge.bundle in Embed PlugIns */ = {isa = PBXBuildFile; fileRef = 1677729A243AA69F003F22F9 /* AppKitBridge.bundle */; platformFilter = maccatalyst; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		167772A9243AA913003F22F9 /* AppKitApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167772A8243AA913003F22F9 /* AppKitApp.swift */; };
 		167772AB243AA9DF003F22F9 /* Catalyst.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167772AA243AA9DF003F22F9 /* Catalyst.swift */; };
 		167772AD243AAA3A003F22F9 /* AppKit.h in Sources */ = {isa = PBXBuildFile; fileRef = 167772AC243AAA3A003F22F9 /* AppKit.h */; };
 		167772B1243AE1E6003F22F9 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 167772B0243AE1E6003F22F9 /* ColorPickerView.swift */; };
+		1682263C2442D62F007A3FE7 /* ColorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1682263B2442D62F007A3FE7 /* ColorView.swift */; };
 		169562DB243D17380050BC36 /* ThumbnailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169562DA243D17380050BC36 /* ThumbnailView.swift */; };
+		169ED4EB243FB573004B1E90 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169ED4EA243FB573004B1E90 /* ColorPickerViewController.swift */; };
+		169ED4EE243FB59E004B1E90 /* ColorPicker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 169ED4EC243FB59E004B1E90 /* ColorPicker.storyboard */; };
 		16B3F65A243BF72500EC9CF2 /* TileEditorCanvasView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3F659243BF72500EC9CF2 /* TileEditorCanvasView.swift */; };
 		16B3F65C243C395000EC9CF2 /* PixelLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16B3F65B243C395000EC9CF2 /* PixelLocation.swift */; };
+		16C50822243E21D100333186 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C50821243E21D100333186 /* Tile.swift */; };
+		16C50824243E21E400333186 /* TileSet8Sided.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C50823243E21E400333186 /* TileSet8Sided.swift */; };
+		16C50826243E21FB00333186 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C50825243E21FB00333186 /* Color.swift */; };
+		16C50828243E247D00333186 /* ColorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C50827243E247D00333186 /* ColorManager.swift */; };
+		16C5082A243E712F00333186 /* TileChooserButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C50829243E712F00333186 /* TileChooserButton.swift */; };
+		16FEDC752444FC8700DF0B59 /* Layer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEDC742444FC8700DF0B59 /* Layer.swift */; };
+		16FEDC772444FC9000DF0B59 /* BitmapLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEDC762444FC9000DF0B59 /* BitmapLayer.swift */; };
+		16FEDC792444FCA200DF0B59 /* VectorLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEDC782444FCA200DF0B59 /* VectorLayer.swift */; };
+		16FEDC7B24455F0300DF0B59 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEDC7A24455F0300DF0B59 /* Shape.swift */; };
+		16FEDC7D24455F9500DF0B59 /* RulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEDC7C24455F9500DF0B59 /* RulerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +82,7 @@
 		1625509924398D4F008FB122 /* Tile ViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tile ViewTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1625509D24398D4F008FB122 /* Tile_ViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile_ViewTests.swift; sourceTree = "<group>"; };
 		1625509F24398D4F008FB122 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		162550A824398F3B008FB122 /* TileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileView.swift; sourceTree = "<group>"; };
+		162550A824398F3B008FB122 /* TileEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileEditorView.swift; sourceTree = "<group>"; };
 		162550AA243992E4008FB122 /* Pixel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pixel.swift; sourceTree = "<group>"; };
 		16777295243A94A8003F22F9 /* Tile View.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Tile View.entitlements"; sourceTree = "<group>"; };
 		1677729A243AA69F003F22F9 /* AppKitBridge.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppKitBridge.bundle; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,9 +93,22 @@
 		167772AC243AAA3A003F22F9 /* AppKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppKit.h; sourceTree = "<group>"; };
 		167772AE243AAA87003F22F9 /* Tile View-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tile View-Bridging-Header.h"; sourceTree = "<group>"; };
 		167772B0243AE1E6003F22F9 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
+		1682263B2442D62F007A3FE7 /* ColorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorView.swift; sourceTree = "<group>"; };
 		169562DA243D17380050BC36 /* ThumbnailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailView.swift; sourceTree = "<group>"; };
+		169ED4EA243FB573004B1E90 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
+		169ED4ED243FB59E004B1E90 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Tile View/Base.lproj/ColorPicker.storyboard"; sourceTree = "<group>"; };
 		16B3F659243BF72500EC9CF2 /* TileEditorCanvasView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileEditorCanvasView.swift; sourceTree = "<group>"; };
 		16B3F65B243C395000EC9CF2 /* PixelLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PixelLocation.swift; sourceTree = "<group>"; };
+		16C50821243E21D100333186 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
+		16C50823243E21E400333186 /* TileSet8Sided.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileSet8Sided.swift; sourceTree = "<group>"; };
+		16C50825243E21FB00333186 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		16C50827243E247D00333186 /* ColorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorManager.swift; sourceTree = "<group>"; };
+		16C50829243E712F00333186 /* TileChooserButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileChooserButton.swift; sourceTree = "<group>"; };
+		16FEDC742444FC8700DF0B59 /* Layer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layer.swift; sourceTree = "<group>"; };
+		16FEDC762444FC9000DF0B59 /* BitmapLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitmapLayer.swift; sourceTree = "<group>"; };
+		16FEDC782444FCA200DF0B59 /* VectorLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorLayer.swift; sourceTree = "<group>"; };
+		16FEDC7A24455F0300DF0B59 /* Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
+		16FEDC7C24455F9500DF0B59 /* RulerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,10 +165,11 @@
 				1625508824398D4D008FB122 /* SceneDelegate.swift */,
 				1625508A24398D4D008FB122 /* ViewController.swift */,
 				1625508C24398D4D008FB122 /* Main.storyboard */,
+				169ED4EC243FB59E004B1E90 /* ColorPicker.storyboard */,
 				1625508F24398D4F008FB122 /* Assets.xcassets */,
 				1625509124398D4F008FB122 /* LaunchScreen.storyboard */,
 				1625509424398D4F008FB122 /* Info.plist */,
-				162550A824398F3B008FB122 /* TileView.swift */,
+				162550A824398F3B008FB122 /* TileEditorView.swift */,
 				162550AA243992E4008FB122 /* Pixel.swift */,
 				167772AA243AA9DF003F22F9 /* Catalyst.swift */,
 				167772AC243AAA3A003F22F9 /* AppKit.h */,
@@ -151,6 +178,18 @@
 				16B3F659243BF72500EC9CF2 /* TileEditorCanvasView.swift */,
 				16B3F65B243C395000EC9CF2 /* PixelLocation.swift */,
 				169562DA243D17380050BC36 /* ThumbnailView.swift */,
+				16C50821243E21D100333186 /* Tile.swift */,
+				16C50823243E21E400333186 /* TileSet8Sided.swift */,
+				16C50825243E21FB00333186 /* Color.swift */,
+				16C50827243E247D00333186 /* ColorManager.swift */,
+				16C50829243E712F00333186 /* TileChooserButton.swift */,
+				169ED4EA243FB573004B1E90 /* ColorPickerViewController.swift */,
+				1682263B2442D62F007A3FE7 /* ColorView.swift */,
+				16FEDC742444FC8700DF0B59 /* Layer.swift */,
+				16FEDC762444FC9000DF0B59 /* BitmapLayer.swift */,
+				16FEDC782444FCA200DF0B59 /* VectorLayer.swift */,
+				16FEDC7A24455F0300DF0B59 /* Shape.swift */,
+				16FEDC7C24455F9500DF0B59 /* RulerView.swift */,
 			);
 			path = "Tile View";
 			sourceTree = "<group>";
@@ -289,6 +328,7 @@
 			files = (
 				1625509324398D4F008FB122 /* LaunchScreen.storyboard in Resources */,
 				1625509024398D4F008FB122 /* Assets.xcassets in Resources */,
+				169ED4EE243FB59E004B1E90 /* ColorPicker.storyboard in Resources */,
 				1625508E24398D4D008FB122 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,17 +354,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16FEDC792444FCA200DF0B59 /* VectorLayer.swift in Sources */,
 				167772B1243AE1E6003F22F9 /* ColorPickerView.swift in Sources */,
 				1625508B24398D4D008FB122 /* ViewController.swift in Sources */,
 				1625508724398D4D008FB122 /* AppDelegate.swift in Sources */,
+				16FEDC7D24455F9500DF0B59 /* RulerView.swift in Sources */,
+				16C50824243E21E400333186 /* TileSet8Sided.swift in Sources */,
+				16FEDC752444FC8700DF0B59 /* Layer.swift in Sources */,
+				16C50822243E21D100333186 /* Tile.swift in Sources */,
 				167772AB243AA9DF003F22F9 /* Catalyst.swift in Sources */,
+				1682263C2442D62F007A3FE7 /* ColorView.swift in Sources */,
+				16C50828243E247D00333186 /* ColorManager.swift in Sources */,
 				162550AB243992E4008FB122 /* Pixel.swift in Sources */,
-				162550A924398F3B008FB122 /* TileView.swift in Sources */,
+				162550A924398F3B008FB122 /* TileEditorView.swift in Sources */,
+				169ED4EB243FB573004B1E90 /* ColorPickerViewController.swift in Sources */,
 				16B3F65A243BF72500EC9CF2 /* TileEditorCanvasView.swift in Sources */,
+				16C50826243E21FB00333186 /* Color.swift in Sources */,
+				16FEDC772444FC9000DF0B59 /* BitmapLayer.swift in Sources */,
 				167772AD243AAA3A003F22F9 /* AppKit.h in Sources */,
+				16FEDC7B24455F0300DF0B59 /* Shape.swift in Sources */,
 				1625508924398D4D008FB122 /* SceneDelegate.swift in Sources */,
 				169562DB243D17380050BC36 /* ThumbnailView.swift in Sources */,
 				16B3F65C243C395000EC9CF2 /* PixelLocation.swift in Sources */,
+				16C5082A243E712F00333186 /* TileChooserButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -375,6 +427,14 @@
 				1625509224398D4F008FB122 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		169ED4EC243FB59E004B1E90 /* ColorPicker.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				169ED4ED243FB59E004B1E90 /* Base */,
+			);
+			name = ColorPicker.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

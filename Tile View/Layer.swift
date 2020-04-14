@@ -10,6 +10,8 @@ import Foundation
 
 class Layer: Codable {
     
+    var name: String = ""
+    
     var alternatives: [Layer] = []
     
     var isHidden: Bool = false

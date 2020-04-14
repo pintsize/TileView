@@ -37,6 +37,8 @@
 		16FEDC792444FCA200DF0B59 /* VectorLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEDC782444FCA200DF0B59 /* VectorLayer.swift */; };
 		16FEDC7B24455F0300DF0B59 /* Shape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEDC7A24455F0300DF0B59 /* Shape.swift */; };
 		16FEDC7D24455F9500DF0B59 /* RulerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEDC7C24455F9500DF0B59 /* RulerView.swift */; };
+		16FEDC80244567A600DF0B59 /* Layers.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 16FEDC7E244567A600DF0B59 /* Layers.storyboard */; };
+		16FEDC8224456AAB00DF0B59 /* LayersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16FEDC8124456AAB00DF0B59 /* LayersViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -109,6 +111,8 @@
 		16FEDC782444FCA200DF0B59 /* VectorLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorLayer.swift; sourceTree = "<group>"; };
 		16FEDC7A24455F0300DF0B59 /* Shape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shape.swift; sourceTree = "<group>"; };
 		16FEDC7C24455F9500DF0B59 /* RulerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RulerView.swift; sourceTree = "<group>"; };
+		16FEDC7F244567A600DF0B59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "Tile View/Base.lproj/Layers.storyboard"; sourceTree = "<group>"; };
+		16FEDC8124456AAB00DF0B59 /* LayersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayersViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +170,7 @@
 				1625508A24398D4D008FB122 /* ViewController.swift */,
 				1625508C24398D4D008FB122 /* Main.storyboard */,
 				169ED4EC243FB59E004B1E90 /* ColorPicker.storyboard */,
+				16FEDC7E244567A600DF0B59 /* Layers.storyboard */,
 				1625508F24398D4F008FB122 /* Assets.xcassets */,
 				1625509124398D4F008FB122 /* LaunchScreen.storyboard */,
 				1625509424398D4F008FB122 /* Info.plist */,
@@ -190,6 +195,7 @@
 				16FEDC782444FCA200DF0B59 /* VectorLayer.swift */,
 				16FEDC7A24455F0300DF0B59 /* Shape.swift */,
 				16FEDC7C24455F9500DF0B59 /* RulerView.swift */,
+				16FEDC8124456AAB00DF0B59 /* LayersViewController.swift */,
 			);
 			path = "Tile View";
 			sourceTree = "<group>";
@@ -328,6 +334,7 @@
 			files = (
 				1625509324398D4F008FB122 /* LaunchScreen.storyboard in Resources */,
 				1625509024398D4F008FB122 /* Assets.xcassets in Resources */,
+				16FEDC80244567A600DF0B59 /* Layers.storyboard in Resources */,
 				169ED4EE243FB59E004B1E90 /* ColorPicker.storyboard in Resources */,
 				1625508E24398D4D008FB122 /* Main.storyboard in Resources */,
 			);
@@ -374,6 +381,7 @@
 				167772AD243AAA3A003F22F9 /* AppKit.h in Sources */,
 				16FEDC7B24455F0300DF0B59 /* Shape.swift in Sources */,
 				1625508924398D4D008FB122 /* SceneDelegate.swift in Sources */,
+				16FEDC8224456AAB00DF0B59 /* LayersViewController.swift in Sources */,
 				169562DB243D17380050BC36 /* ThumbnailView.swift in Sources */,
 				16B3F65C243C395000EC9CF2 /* PixelLocation.swift in Sources */,
 				16C5082A243E712F00333186 /* TileChooserButton.swift in Sources */,
@@ -435,6 +443,14 @@
 				169ED4ED243FB59E004B1E90 /* Base */,
 			);
 			name = ColorPicker.storyboard;
+			sourceTree = "<group>";
+		};
+		16FEDC7E244567A600DF0B59 /* Layers.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				16FEDC7F244567A600DF0B59 /* Base */,
+			);
+			name = Layers.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

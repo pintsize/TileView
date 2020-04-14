@@ -28,6 +28,7 @@ class TileEditorView: UIView {
     
     var tile: Tile? {
         didSet {
+            print("tile: \(tile?.layers)")
             setNeedsDisplay()
         }
     }
@@ -122,8 +123,6 @@ class TileEditorView: UIView {
     
     func erase(location: PixelLocation) {
         set(color: nil, for: location)
-        let pixel = pixels[location.column][location.row]
-        
     }
     
     @objc func tap(_ gestureRecognizer: UITapGestureRecognizer) {

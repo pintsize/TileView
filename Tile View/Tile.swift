@@ -21,11 +21,16 @@ class Tile: Codable {
             
             columns.append(column)
         }
+        
         pixels = columns
+        
+        layers = [BitmapLayer()]
     }
     
     var pixels: [[Pixel]] = []
     
-    var layers: [Layer]? = []
+    var layers: [Layer] = []
+    
+    
     
 }

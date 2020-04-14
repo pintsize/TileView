@@ -140,7 +140,6 @@ class ViewController: UIViewController {
             let decodedTileSet = try JSONDecoder().decode(TileSet8Sided.self, from: jsonData)
             
             tileSet = decodedTileSet
-            
             presentTile(with: .center, in: tileEditorView, updateName: true)
             /*
             presentTile(with: .upperLeftEdge, in: topLeftTileEditorView)

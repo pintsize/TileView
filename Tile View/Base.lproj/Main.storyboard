@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Tile Editor View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Tile_View" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="TileEditorViewController" customModule="Tile_View" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -48,11 +48,6 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="huG-j6-JOF"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="pixelCount">
-                                        <integer key="value" value="32"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="Y8a-6r-pWx" customClass="RulerView" customModule="Tile_View" customModuleProvider="target">
                                 <rect key="frame" x="160" y="1035" width="704" height="32"/>
@@ -60,11 +55,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="Pns-zg-snn"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="pixelCount">
-                                        <integer key="value" value="32"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="fEx-qa-8Pp" customClass="RulerView" customModule="Tile_View" customModuleProvider="target">
                                 <rect key="frame" x="160" y="299" width="704" height="32"/>
@@ -72,11 +62,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="7wT-85-5hE"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="pixelCount">
-                                        <integer key="value" value="32"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" placeholderIntrinsicWidth="44" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="r1h-hA-foN" customClass="RulerView" customModule="Tile_View" customModuleProvider="target">
                                 <rect key="frame" x="864" y="331" width="32" height="704"/>
@@ -84,11 +69,6 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="32" id="3G6-RS-EYs"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="pixelCount">
-                                        <integer key="value" value="32"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Center" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pf9-4p-EeS">
                                 <rect key="frame" x="489" y="273" width="46.5" height="18"/>

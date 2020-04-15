@@ -10,27 +10,17 @@ import Foundation
 
 class Tile: Codable {
     
-    init() {
-        var columns: [[Pixel]] = []
+    init(with resolution: Resolution) {
+        self.resolution = resolution
         
-        for _ in 0..<horizontalResolution {
-            var column: [Pixel] = []
-            for _ in 0..<verticalResolution {
-                column.append(Pixel())
-            }
-            
-            columns.append(column)
-        }
-        
-        pixels = columns
-        
-        layers = [BitmapLayer(name: "Base"), BitmapLayer(name: "Bitmap 1"), VectorLayer(name: "Vector 1")]
+        let baseLayer = Layer()
+        baseLayer.name = "Base"
+        baseLayer.bitmap = Bitmap(with: resolution)
+        layers = [baseLayer, Layer()]
     }
     
-    var pixels: [[Pixel]] = []
+    let resolution: Resolution
     
     var layers: [Layer] = []
-    
-    
     
 }

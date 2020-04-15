@@ -10,7 +10,7 @@ import UIKit
 
 final class RulerView: UIView {
     
-    @IBInspectable var pixelCount: Int = 0 {
+    var pixelCount: Int = defaultResolution.horizontal {
         didSet {
             setupPixels()
         }
@@ -26,6 +26,8 @@ final class RulerView: UIView {
         stackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         stackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         stackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        
+        setupPixels()
     }
     
     override func layoutSubviews() {

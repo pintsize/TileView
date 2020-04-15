@@ -64,34 +64,30 @@ extension TileIdentifier {
 
 class TileSet8Sided: Codable {
     
-    init() {
+    init(with resolution: Resolution) {
+        self.resolution = resolution
         
-        var tiles: [TileIdentifier: Tile] = [:]
-        
-        tiles[.upperLeftEdge] = Tile()
-        tiles[.upEdge] = Tile()
-        tiles[.upperRightEdge] = Tile()
-        
-        tiles[.leftEdge] = Tile()
-        tiles[.center] = Tile()
-        tiles[.rightEdge] = Tile()
-        
-        tiles[.lowerLeftEdge] = Tile()
-        tiles[.downEdge] = Tile()
-        tiles[.lowerRightEdge] = Tile()
-        
-        tiles[.upperLeftCorner] = Tile()
-        tiles[.upperRightCorner] = Tile()
-        tiles[.lowerLeftCorner] = Tile()
-        tiles[.lowerRightCorner] = Tile()
-        
-        self.tiles = tiles
+        self.tiles = [:]
     }
     
-    let tiles: [TileIdentifier: Tile]
+    let resolution: Resolution
+    
+    var tiles: [TileIdentifier: Tile]
     
     func tile(with identifier: TileIdentifier) -> Tile? {
+        if let tile = tiles[identifier] {
+            return tile
+        }
+        tiles[identifier] = Tile(with: resolution)
         return tiles[identifier]
+    }
+    
+}
+
+extension TileSet8Sided: TileSet {
+    
+    var baseTile: Tile {
+        return tiles[.center] ?? Tile(with: resolution)
     }
     
 }

@@ -8,8 +8,3 @@
 
 import Foundation
 
-class VectorLayer: Layer {
-    
-    var shapes: [Shape] = []
-    
-}

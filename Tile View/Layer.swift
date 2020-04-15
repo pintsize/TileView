@@ -10,16 +10,17 @@ import Foundation
 
 class Layer: Codable {
     
-    init(name: String) {
-        self.name = name
-    }
-    
-    var name: String = ""
+    var name: String = "Unnamed Layer"
     
     var alternatives: [Layer] = []
     
     var isHidden: Bool = false
     
     var isLocked: Bool = false
+    
+    var bitmap: Bitmap?
+    
+    // TODO: Reenable when starting on vectors
+    //var shapes: [Shape]
     
 }

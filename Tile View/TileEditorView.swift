@@ -8,9 +8,6 @@
 
 import UIKit
 
-let horizontalResolution: Int = 32
-let verticalResolution: Int = 32
-
 class TileEditorView: UIView {
     enum ToolMode {
         case eraser
@@ -24,19 +21,22 @@ class TileEditorView: UIView {
     @IBOutlet weak var thumbnailView2X: ThumbnailView!
     @IBOutlet weak var thumbnailView3X: ThumbnailView!
     
+    var transparentColor: UIColor = UIColor.magenta
+    
     var toolMode: ToolMode = .paint
     
     var tile: Tile? {
         didSet {
-            print("tile: \(tile?.layers)")
             setNeedsDisplay()
             updateThumbnails()
         }
     }
     
-    var pixels: [[Pixel]] {
-        return tile?.pixels ?? []
-    }
+    var currentLayer: Layer?
+    
+//    var pixels: [[Pixel]] {
+//        return currentLayer?.pixels ?? []
+//    }
     
     var paintColor: Color? = UIColor.black.color
     
@@ -61,7 +61,7 @@ class TileEditorView: UIView {
     var hoverPixelLocation: PixelLocation? = nil
     
     
-    func commonInit() {
+    fileprivate func setupGestureRecognizers() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(TileEditorView.tap(_:)))
         tap.numberOfTapsRequired = 1
         tap.delegate = self
@@ -74,20 +74,29 @@ class TileEditorView: UIView {
         let hover = UIHoverGestureRecognizer(target: self, action: #selector(TileEditorView.hover(_:)))
         addGestureRecognizer(hover)
         
-//        let longPress = UILongPressGestureRecognizer(target: self, action: #selector(TileEditorView.longPress(_:)))
-//        addGestureRecognizer(longPress)
-        
         isUserInteractionEnabled = true
     }
     
+    func commonInit() {
+        setupGestureRecognizers()
+        
+        if let patternImage = UIImage(named: "Transparent") {
+            transparentColor = UIColor(patternImage: patternImage)
+            backgroundColor = transparentColor
+        }
+    }
+    
     func updateThumbnails() {
-        thumbnailView1X.pixels = pixels
-        thumbnailView2X.pixels = pixels
-        thumbnailView3X.pixels = pixels
+//        thumbnailView1X.pixels = pixels
+//        thumbnailView2X.pixels = pixels
+//        thumbnailView3X.pixels = pixels
     }
     
     func handlePaint(_ gestureRecognizer: UIGestureRecognizer) {
-        guard let color = paintColor else { return }
+        guard let color = paintColor,
+            let layer = currentLayer,
+            let bitmap = layer.bitmap else { return }
+        
         let location: CGPoint = gestureRecognizer.location(in: self)
         print("handlePaint color: \(color)")
         guard bounds.contains(location) else { return }
@@ -106,7 +115,7 @@ class TileEditorView: UIView {
             erase(location: pixelLocation)
         case .floodFill:
             let matchingColor = pixelColor(at: pixelLocation)
-            floodFill(pixelLocation, with: color, matching: matchingColor)
+            floodFill(pixelLocation, with: color, matching: matchingColor, in: bitmap)
         case .paint:
             set(color: color, for: pixelLocation)
         case .line:
@@ -118,8 +127,10 @@ class TileEditorView: UIView {
     }
     
     func pixelColor(at location: PixelLocation) -> Color? {
-        let pixel = pixels[location.column][location.row]
-        return pixel.color
+        guard let layer = currentLayer,
+            let bitmap = layer.bitmap else { return nil }
+
+        return bitmap.color(at: location)
     }
     
     func erase(location: PixelLocation) {
@@ -165,35 +176,21 @@ class TileEditorView: UIView {
     }
         
     override func draw(_ rect: CGRect) {
-                
+        guard let tile = tile else { return }
         UIColor.separator.setStroke()
         let bezierPath = UIBezierPath()
         
         
-        for (columnIndex, column) in pixels.enumerated() {
-            for (rowIndex, pixel) in column.enumerated() {
-//                print(pixel)
-                
-                if let pixelColor = pixel.color {
-                    let rect = rectFor(column: columnIndex, row: rowIndex)
-                    pixelColor.setFill()
-                    UIBezierPath(rect: rect).fill()
-                } else {
-                    drawTransparentPattern(at: PixelLocation(column: columnIndex, row: rowIndex))
-                }
-            }
-        }
+        renderLayers(in: tile)
         
         let size = cellSize
         
-        for n in 1..<horizontalResolution {
-//            print(n)
+        for n in 1..<tile.resolution.horizontal {
             bezierPath.move(to: CGPoint(x: bounds.minX + (size.width * CGFloat(n)), y: bounds.minY))
             bezierPath.addLine(to: CGPoint(x: bounds.minX + (size.width * CGFloat(n)), y: bounds.maxY))
         }
         
-        for n in 1..<verticalResolution {
-//            print(n)
+        for n in 1..<tile.resolution.vertical {
             bezierPath.move(to: CGPoint(x: bounds.minX, y: (size.height * CGFloat(n))))
             bezierPath.addLine(to: CGPoint(x: bounds.maxX, y: (size.height * CGFloat(n))))
         }
@@ -206,8 +203,38 @@ class TileEditorView: UIView {
         drawHover()
     }
     
+    func renderLayers(in tile: Tile) {
+        for layer in tile.layers {
+            if !layer.isHidden {
+                render(layer: layer)
+            }
+        }
+    }
+    
+    func render(layer: Layer) {
+        if let bitmap = layer.bitmap {
+            render(bitmap)
+        }
+    }
+    
+    func render(_ bitmap: Bitmap) {
+        
+        for (rowIndex, bitmapRow) in bitmap.rows.enumerated() {
+            for (columnIndex, pixel) in bitmapRow.pixels.enumerated() {
+                if let pixelColor = pixel.color {
+                    let location = PixelLocation(column: columnIndex, row: rowIndex)
+                    let rect = rectFor(location)
+                    pixelColor.setFill()
+                    UIBezierPath(rect: rect).fill()
+                }
+            }
+        }
+        
+    }
+    
+    
     func drawTransparentPattern(at location: PixelLocation) {
-        let rect = rectFor(column: location.column, row: location.row)
+        let rect = rectFor(location)
         UIColor.white.setFill()
         UIBezierPath(rect: rect).fill()
         
@@ -235,14 +262,15 @@ class TileEditorView: UIView {
 
     
     var cellSize: CGSize {
-        return CGSize(width: bounds.width / CGFloat(horizontalResolution), height: bounds.height / CGFloat(verticalResolution))
+        guard let tile = tile else { return .zero}
+        
+        return CGSize(width: bounds.width / CGFloat(tile.resolution.horizontal), height: bounds.height / CGFloat(tile.resolution.vertical))
     }
     
-    
-    func rectFor(column: Int, row: Int) -> CGRect {
+    func rectFor(_ location: PixelLocation) -> CGRect {
         let size = cellSize
-        return CGRect(x: bounds.minX + size.width * CGFloat(column),
-                      y: bounds.minY + size.height * CGFloat(row),
+        return CGRect(x: bounds.minX + size.width * CGFloat(location.column),
+                      y: bounds.minY + size.height * CGFloat(location.row),
                       width: size.width,
                       height: size.height)
         
@@ -264,43 +292,45 @@ class TileEditorView: UIView {
                       height: size.height)
     }
     
-    func floodFill(_ location: PixelLocation, with color: Color, matching: Color?) {
+    func floodFill(_ location: PixelLocation, with color: Color, matching: Color?, in bitmap: Bitmap) {
         let x = location.column
         let y = location.row
-        if x < 0 || x >= horizontalResolution ||
-            y < 0 || y >= verticalResolution {
+        if x < 0 || x >= bitmap.resolution.horizontal ||
+            y < 0 || y >= bitmap.resolution.vertical {
             return
         }
         
-        print("flooding: (\(x), \(y))")
-        let pixel = pixels[x][y]
-        
-        if pixel.color != matching || pixel.color == color { return }
+        guard let pixel = bitmap.pixel(at: location) else { return }
+        guard pixel.color == matching else { return }
+        guard pixel.color != color else { return }
         
         
         set(color: color, for: PixelLocation(column: x, row: y))
         
         
-        floodFill(location.above, with: color, matching: matching)
-        floodFill(location.below, with: color, matching: matching)
-        floodFill(location.left, with: color, matching: matching)
-        floodFill(location.right, with: color, matching: matching)
+        floodFill(location.above, with: color, matching: matching, in: bitmap)
+        floodFill(location.below, with: color, matching: matching, in: bitmap)
+        floodFill(location.left, with: color, matching: matching, in: bitmap)
+        floodFill(location.right, with: color, matching: matching, in: bitmap)
     }
     
-    func set(color: Color?, for pixelLocation: PixelLocation) {
-        let pixel = pixels[pixelLocation.column][pixelLocation.row]
+    func set(color: Color?, for location: PixelLocation) {
+        guard let layer = currentLayer,
+            let bitmap = layer.bitmap,
+            let pixel = bitmap.pixel(at: location) else { return }
+        
         if let undoManager = undoManager {
             let oldColor = pixel.color
             
             undoManager.registerUndo(withTarget: self, handler: { (TileEditorView) in
-                self.set(color: oldColor, for: pixelLocation)
+                self.set(color: oldColor, for: location)
                 
             })
             undoManager.setActionName("Change Color")
         }
         
         pixel.color = color
-        let rect = rectFor(column: pixelLocation.column, row: pixelLocation.row)
+        let rect = rectFor(location)
         setNeedsDisplay(rect)
         updateThumbnails()
     }

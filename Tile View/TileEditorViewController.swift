@@ -10,6 +10,8 @@ import UIKit
 
 let fileName: String = "TileSet.json"
 
+let defaultResolution = Resolution(horizontal: 32, vertical: 32)
+
 class TileEditorViewController: UIViewController {
     
     @IBOutlet weak var tileEditorView: TileEditorView!
@@ -46,24 +48,36 @@ class TileEditorViewController: UIViewController {
     @IBOutlet weak var lowerRightCornerButton: TileChooserButton!
     
     @IBOutlet weak var tileNameLabel: UILabel!
-    @IBOutlet weak var stackView: UIStackView!
     
-    
-    var tileSet: TileSet8Sided = TileSet8Sided() {
+    var tileSet: TileSet8Sided = TileSet8Sided(with: defaultResolution) {
         didSet {
-            //title = tileSet.tile(with: <#T##TileIdentifier#>)
+            tile = tileSet.baseTile
         }
     }
-    var tile: Tile?
-    var layer: Layer?
-        
+    var tile: Tile = Tile(with: defaultResolution)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadPixels()
         
         setupSwatches()
         
-        setupTileChooserButtons()
+        upperLeftEdgeButton.tileIdentifier = .upperLeftEdge
+        upEdgeButton.tileIdentifier = .upEdge
+        upperRightEdgeButton.tileIdentifier = .upperRightEdge
+        
+        leftEdgeButton.tileIdentifier = .leftEdge
+        centerButton.tileIdentifier = .center
+        rightEdgeButton.tileIdentifier = .rightEdge
+        
+        lowerLeftEdgeButton.tileIdentifier = .lowerLeftEdge
+        downEdgeButton.tileIdentifier = .downEdge
+        lowerRightEdgeButton.tileIdentifier = .lowerRightEdge
+        
+        upperLeftCornerButton.tileIdentifier = .upperLeftCorner
+        upperRightCornerButton.tileIdentifier = .upperRightCorner
+        lowerLeftCornerButton.tileIdentifier = .lowerLeftCorner
+        lowerRightCornerButton.tileIdentifier = .lowerRightCorner
         
         tileNameLabel.text = ""
         #if targetEnvironment(macCatalyst)
@@ -91,24 +105,7 @@ class TileEditorViewController: UIViewController {
         addSwatch(with: .yellow)
     }
     
-    fileprivate func setupTileChooserButtons() {
-        upperLeftEdgeButton.tileIdentifier = .upperLeftEdge
-        upEdgeButton.tileIdentifier = .upEdge
-        upperRightEdgeButton.tileIdentifier = .upperRightEdge
-        
-        leftEdgeButton.tileIdentifier = .leftEdge
-        centerButton.tileIdentifier = .center
-        rightEdgeButton.tileIdentifier = .rightEdge
-        
-        lowerLeftEdgeButton.tileIdentifier = .lowerLeftEdge
-        downEdgeButton.tileIdentifier = .downEdge
-        lowerRightEdgeButton.tileIdentifier = .lowerRightEdge
-        
-        upperLeftCornerButton.tileIdentifier = .upperLeftCorner
-        upperRightCornerButton.tileIdentifier = .upperRightCorner
-        lowerLeftCornerButton.tileIdentifier = .lowerLeftCorner
-        lowerRightCornerButton.tileIdentifier = .lowerRightCorner
-    }
+    // TODO: Relocate file presistence bits elsewhere!!
     
     var documentsDirectory: String? {
         return NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
@@ -168,11 +165,12 @@ class TileEditorViewController: UIViewController {
             */
         } catch let error {
             print("error: \(error)")
-            tileSet = TileSet8Sided()
+            tileSet = TileSet8Sided(with: defaultResolution)
             presentTile(with: .center, in: tileEditorView, updateName: true)
         }
 
     }
+    @IBOutlet weak var stackView: UIStackView!
     
     
     func presentTile(with identifier: TileIdentifier, in tileView: TileEditorView, updateName: Bool = false) {
@@ -180,7 +178,7 @@ class TileEditorViewController: UIViewController {
         tileNameLabel.text = identifier.localizedName
         
         tileView.tile = tile
-        tileView.currentLayer = layer
+        tileView.currentLayer = tile.layers.first
     }
     
     @IBAction func setTile(_ tileChooserButton: TileChooserButton) {

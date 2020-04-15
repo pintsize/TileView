@@ -12,17 +12,13 @@ import UIKit
 
 class ThumbnailView: UIView {
     
-    var pixels: [[Pixel]] = [] {
-        didSet {
-            setNeedsDisplay()
-        }
-    }
+    var bitmap: Bitmap?
     
     override func draw(_ rect: CGRect) {
+        guard let bitmap = bitmap else { return }
         let size = pixelSize
-        for (columnIndex, column) in pixels.enumerated() {
-            for (rowIndex, pixel) in column.enumerated() {
-                //                print(pixel)
+        for (rowIndex, bitmapRow) in bitmap.rows.enumerated() {
+            for (columnIndex, pixel) in bitmapRow.pixels.enumerated() {
                 if let pixelColor = pixel.color {
                     let rect = CGRect(x: CGFloat(columnIndex) * size.width, y: CGFloat(rowIndex) * size.height, width: size.width, height: size.height)
                     pixelColor.setFill()
@@ -30,10 +26,12 @@ class ThumbnailView: UIView {
                 }
             }
         }
+        
     }
     
     var pixelSize: CGSize {
-        return CGSize(width: bounds.width / CGFloat(horizontalResolution), height: bounds.height / CGFloat(verticalResolution))
+        guard let bitmap = bitmap else { return .zero}
+        return CGSize(width: bounds.width / CGFloat(bitmap.resolution.horizontal), height: bounds.height / CGFloat(bitmap.resolution.vertical))
     }
     
 }

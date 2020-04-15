@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ZKF-BQ-FLU">
+    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Layers-->
+        <scene sceneID="r4L-75-hZ2">
+            <objects>
+                <tableViewController id="aRz-bR-wVm" customClass="LayersViewController" customModule="Tile_View" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="103" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="llx-jZ-6SX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="LayerCell" rowHeight="103" id="xYO-m1-OaN">
+                                <rect key="frame" x="0.0" y="28" width="320" height="103"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="xYO-m1-OaN" id="wTv-Jp-xfJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="103"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CKa-tW-Jto">
+                                            <rect key="frame" x="16" y="11" width="288" height="81"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x8j-Zw-Z1E" customClass="ThumbnailView" customModule="Tile_View" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="0.0" width="81" height="81"/>
+                                                    <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="x8j-Zw-Z1E" secondAttribute="height" multiplier="1:1" id="BUj-PN-2Yh"/>
+                                                    </constraints>
+                                                </view>
+                                                <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="x9j-xr-5Dz">
+                                                    <rect key="frame" x="89" y="0.0" width="199" height="81"/>
+                                                    <subviews>
+                                                        <textField opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rme-KU-fAL">
+                                                            <rect key="frame" x="0.0" y="0.0" width="199" height="41"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                        </textField>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="asl-y9-n2Z">
+                                                            <rect key="frame" x="0.0" y="49" width="199" height="32"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8yZ-zP-d99">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="95.5" height="32"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="32" id="CWf-OX-ksm"/>
+                                                                    </constraints>
+                                                                    <state key="normal" image="lock.open.fill" catalog="system"/>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0ds-4j-gQU">
+                                                                    <rect key="frame" x="103.5" y="0.0" width="95.5" height="32"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="32" id="8gZ-eq-iFe"/>
+                                                                    </constraints>
+                                                                    <state key="normal" image="eye.fill" catalog="system"/>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="CKa-tW-Jto" secondAttribute="bottom" id="QAn-Y4-SSw"/>
+                                        <constraint firstItem="CKa-tW-Jto" firstAttribute="top" secondItem="wTv-Jp-xfJ" secondAttribute="topMargin" id="TYl-0a-zdV"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="CKa-tW-Jto" secondAttribute="trailing" id="UPS-0r-KDf"/>
+                                        <constraint firstItem="CKa-tW-Jto" firstAttribute="leading" secondItem="wTv-Jp-xfJ" secondAttribute="leadingMargin" id="Vnr-iU-JKZ"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="aRz-bR-wVm" id="vXd-fb-eLH"/>
+                            <outlet property="delegate" destination="aRz-bR-wVm" id="NRK-dA-yG2"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Layers" id="k9x-JZ-5sz">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="bQ7-y1-KXo"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wtS-J2-1Kj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3000" y="326.25"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="gwt-j7-e6f">
+            <objects>
+                <navigationController id="ZKF-BQ-FLU" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="rxm-S1-cZy">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="aRz-bR-wVm" kind="relationship" relationship="rootViewController" id="DJB-Eo-63P"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wQA-U3-C4h" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2221" y="327"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="eye.fill" catalog="system" width="128" height="78"/>
+        <image name="lock.open.fill" catalog="system" width="32" height="32"/>
+    </resources>
+</document>

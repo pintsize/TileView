@@ -12,7 +12,11 @@ import UIKit
 
 class ThumbnailView: UIView {
     
-    var bitmap: Bitmap?
+    var bitmap: Bitmap? {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
     
     override func draw(_ rect: CGRect) {
         guard let bitmap = bitmap else { return }

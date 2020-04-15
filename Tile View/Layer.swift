@@ -18,7 +18,7 @@ class Layer: Codable {
     
     var isLocked: Bool = false
     
-    var bitmap: Bitmap?
+    var bitmap: Bitmap = Bitmap(with: defaultResolution)
     
     // TODO: Reenable when starting on vectors
     //var shapes: [Shape]

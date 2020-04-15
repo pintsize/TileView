@@ -32,7 +32,11 @@ class TileEditorView: UIView {
         }
     }
     
-    var currentLayer: Layer?
+    var currentLayer: Layer? {
+        didSet {
+            print("set currentLayer: \(currentLayer)")
+        }
+    }
     
 //    var pixels: [[Pixel]] {
 //        return currentLayer?.pixels ?? []
@@ -87,15 +91,15 @@ class TileEditorView: UIView {
     }
     
     func updateThumbnails() {
-//        thumbnailView1X.pixels = pixels
-//        thumbnailView2X.pixels = pixels
-//        thumbnailView3X.pixels = pixels
+        guard let layer = currentLayer else { return }
+        thumbnailView1X.bitmap = layer.bitmap
+        thumbnailView2X.bitmap = layer.bitmap
+        thumbnailView3X.bitmap = layer.bitmap
     }
     
     func handlePaint(_ gestureRecognizer: UIGestureRecognizer) {
         guard let color = paintColor,
-            let layer = currentLayer,
-            let bitmap = layer.bitmap else { return }
+            let layer = currentLayer else { return }
         
         let location: CGPoint = gestureRecognizer.location(in: self)
         print("handlePaint color: \(color)")
@@ -115,7 +119,7 @@ class TileEditorView: UIView {
             erase(location: pixelLocation)
         case .floodFill:
             let matchingColor = pixelColor(at: pixelLocation)
-            floodFill(pixelLocation, with: color, matching: matchingColor, in: bitmap)
+            floodFill(pixelLocation, with: color, matching: matchingColor, in: layer.bitmap)
         case .paint:
             set(color: color, for: pixelLocation)
         case .line:
@@ -127,10 +131,9 @@ class TileEditorView: UIView {
     }
     
     func pixelColor(at location: PixelLocation) -> Color? {
-        guard let layer = currentLayer,
-            let bitmap = layer.bitmap else { return nil }
+        guard let layer = currentLayer else { return nil }
 
-        return bitmap.color(at: location)
+        return layer.bitmap.color(at: location)
     }
     
     func erase(location: PixelLocation) {
@@ -212,9 +215,7 @@ class TileEditorView: UIView {
     }
     
     func render(layer: Layer) {
-        if let bitmap = layer.bitmap {
-            render(bitmap)
-        }
+        render(layer.bitmap)
     }
     
     func render(_ bitmap: Bitmap) {
@@ -316,8 +317,7 @@ class TileEditorView: UIView {
     
     func set(color: Color?, for location: PixelLocation) {
         guard let layer = currentLayer,
-            let bitmap = layer.bitmap,
-            let pixel = bitmap.pixel(at: location) else { return }
+            let pixel = layer.bitmap.pixel(at: location) else { return }
         
         if let undoManager = undoManager {
             let oldColor = pixel.color

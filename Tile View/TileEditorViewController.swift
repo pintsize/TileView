@@ -212,7 +212,16 @@ class TileEditorViewController: UIViewController {
             tileEditorView.toolMode = .eraser
         }
         
-        savePixels() 
+        savePixels()
+    }
+    
+    // NOTE: This kinda stuff will all be replaced with a proper layer picker UI later on
+    @IBAction func setLayer(_ segmentedControl: UISegmentedControl) {
+        guard let layer = tile.layers[safe: segmentedControl.selectedSegmentIndex] else { return }
+        tileEditorView.currentLayer = layer
+        
+        
+        savePixels()
     }
     
     func addSwatch(with color: UIColor) {

@@ -364,14 +364,13 @@
                                 </connections>
                             </segmentedControl>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="P7r-va-iIA">
-                                <rect key="frame" x="403" y="1075" width="218" height="32"/>
+                                <rect key="frame" x="439.5" y="1075" width="145" height="32"/>
                                 <segments>
                                     <segment title="Base"/>
                                     <segment title="Bitmap 1"/>
-                                    <segment title="Vector 1"/>
                                 </segments>
                                 <connections>
-                                    <action selector="setToolMode:" destination="BYZ-38-t0r" eventType="valueChanged" id="Qxk-jc-0Tu"/>
+                                    <action selector="setLayer:" destination="BYZ-38-t0r" eventType="valueChanged" id="shQ-3g-aNm"/>
                                 </connections>
                             </segmentedControl>
                         </subviews>
